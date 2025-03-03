@@ -13,3 +13,6 @@ CREATE TABLE users (
 
 )
 
+
+ALTER TABLE users ADD ROLE VARCHAR(10) DEFAULT "user";
+
