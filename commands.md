@@ -13,4 +13,4 @@
 ### run sql file in postgres deployed in docker
 
 `docker cp ./db/schema.sql id:/tmp/schema.sql`
-`docker exec -it id bash -c "PGPASSWORD=fit psql -U db -d db -f/tmp/schema.sql"`
+`docker exec -it id bash -c "PGPASSWORD=db psql -U db -d db -f/tmp/schema.sql"`
