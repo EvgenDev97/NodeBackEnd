@@ -7,6 +7,7 @@ import db from "./db/db.js";
 import productRoutes from "./routes/productRoutes.js";
 import userRouters from "./routes/userRouters.js";
 import {defence} from "./arcjet/arcjetFunc.js";
+import {authenticateJWT} from "./middlewares/authenticateJWT.js";
 dotenv.config();
 
 const app = express();
@@ -18,7 +19,7 @@ app.use(morgan("dev")); //log the requests
 /*arcjet settings*/
 app.use(defence)
 app.use("/api/product", productRoutes)
-app.use("/api/registration", userRouters)
+app.use("/api/", userRouters)
 
 
 
