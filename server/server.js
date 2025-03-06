@@ -8,8 +8,9 @@ import productRoutes from "./routes/productRoutes.js";
 import userRouters from "./routes/userRouters.js";
 import {defence} from "./arcjet/arcjetFunc.js";
 import {authenticateJWT} from "./middlewares/authenticateJWT.js";
-dotenv.config();
 
+
+dotenv.config();
 const app = express();
 const PORT = process.env.PORT;
 app.use(express.json());
