@@ -1,4 +1,5 @@
 import jwt from "jsonwebtoken";
+import {adminEmailRegExp} from "../regExp/emailRegExp.js";
 
 export const authenticateJWT = (req,res,next)=>{
     try{
@@ -9,10 +10,18 @@ export const authenticateJWT = (req,res,next)=>{
         if(token){
             jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
                 if(err){
-                    res.status(403).message({message:"HTTP 403 FORBIDDEN"});
+                    res.status(403).json({message:"HTTP 403 FORBIDDEN"});
                 }
-                req.user = user;
+                /*Если токен действителен, в user передаются данные, закодированные в токене (например, id и email).
+                    Эти данные сохраняются в объекте запроса (req.user), чтобы их можно было использовать в следующих
+                     middleware или обработчиках маршрута.*/
+                // req.user = user;
+                const userEmail = user.email;
+                if(!adminEmailRegExp.test(userEmail)){
+                    res.status(403).json({message:"Access denied"});
+                }
                 next();
+
             })
         }else{
             res.status(401).send({message:"No Token"});
