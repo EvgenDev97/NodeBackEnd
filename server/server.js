@@ -24,7 +24,6 @@ app.use("/api/product", authenticateJWT,  productRoutes)
 app.use("/api/", userRouters)
 
 
-
 async function start(){
     try{
         await db.connect( ()=>{
