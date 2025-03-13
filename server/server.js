@@ -10,6 +10,7 @@ import {defence} from "./arcjet/arcjetFunc.js";
 import {authenticateJWT} from "./middlewares/authenticateJWT.js";
 
 
+
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT;
@@ -19,7 +20,7 @@ app.use(helmet()); //for protected http headers
 app.use(morgan("dev")); //log the requests
 /*arcjet settings*/
 app.use(defence)
-app.use("/api/product", productRoutes)
+app.use("/api/product", authenticateJWT,  productRoutes)
 app.use("/api/", userRouters)
 
 
